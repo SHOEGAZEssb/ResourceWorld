@@ -62,8 +62,8 @@
     <Compile Include="Energy\Cables\Cable.cs" />
     <Compile Include="Energy\ICargoContainer.cs" />
     <Compile Include="Energy\Packet.cs" />
-    <Compile Include="Energy\Solar\ISolarCell.cs" />
-    <Compile Include="Energy\Solar\SolarCell.cs" />
+    <Compile Include="Energy\Solar\ISolarPanel.cs" />
+    <Compile Include="Energy\Solar\SolarPanel.cs" />
     <Compile Include="Energy\Storage\CargoTank.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="IResourceObject.cs" />

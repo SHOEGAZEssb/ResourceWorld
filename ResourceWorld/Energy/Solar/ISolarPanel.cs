@@ -4,7 +4,7 @@
   /// Interface for a cargo generating
   /// solar panel.
   /// </summary>
-  public interface ISolarCell : ICargoContainer
+  public interface ISolarPanel : ICargoContainer
   {
     #region Properties
 

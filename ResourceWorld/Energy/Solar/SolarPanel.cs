@@ -2,14 +2,23 @@
 
 namespace ResourceWorld.Energy.Solar
 {
-  public class SolarCell : ISolarCell
+  public class SolarPanel : ISolarPanel
   {
     #region Properties
+
+    #region IResourceObject
 
     /// <summary>
     /// Name of this object.
     /// </summary>
     public string ObjectName => "Solar Cell";
+
+    /// <summary>
+    /// The current power state of the object.
+    /// </summary>
+    public PowerState CurrentPowerState { get; set; }
+
+    #endregion IResourceObject
 
     /// <summary>
     /// Current amount of stored cargo.
@@ -33,15 +42,15 @@ namespace ResourceWorld.Energy.Solar
     public double MaxCargo => 1000;
 
     /// <summary>
-    /// The current power state of the object.
+    /// Base amount of cargo produced during the day.
     /// </summary>
-    public PowerState CurrentPowerState { get; set; }
+    public const double CargoPerTickBase = 0.003;
 
     /// <summary>
     /// Amount of cargo that is charged
     /// per update tick.
     /// </summary>
-    public double CargoPerTick => 0.003;
+    public double CargoPerTick => CargoPerTickBase;
 
     #region IConnectable
 
@@ -80,7 +89,7 @@ namespace ResourceWorld.Energy.Solar
     /// <summary>
     /// Constructor.
     /// </summary>
-    public SolarCell()
+    public SolarPanel()
     {
       CurrentPowerState = PowerState.On;
 

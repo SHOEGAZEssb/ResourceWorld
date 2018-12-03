@@ -22,7 +22,7 @@ namespace ResourceWorldUI
     private async void Window_Initialized(object sender, EventArgs e)
     {
       Game g = new Game();
-      SolarCell sc = new SolarCell();
+      SolarPanel sc = new SolarPanel();
       sc.Right.CurrentIOMode = IOMode.Output;
 
       CargoTank tank = new CargoTank();
