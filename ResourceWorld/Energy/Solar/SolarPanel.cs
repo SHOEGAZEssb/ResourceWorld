@@ -1,4 +1,6 @@
 ﻿using ResourceWorld.Connection;
+using ResourceWorld.Upgrades;
+using System;
 
 namespace ResourceWorld.Energy.Solar
 {
@@ -20,6 +22,8 @@ namespace ResourceWorld.Energy.Solar
 
     #endregion IResourceObject
 
+    #region ICargoContainer
+
     /// <summary>
     /// Current amount of stored cargo.
     /// </summary>
@@ -40,6 +44,17 @@ namespace ResourceWorld.Energy.Solar
     /// Maximum cargo that can be stored.
     /// </summary>
     public double MaxCargo => 1000;
+
+    #endregion ICargoContainer
+
+    #region IUpgradeable
+
+    /// <summary>
+    /// Available upgrade slots.
+    /// </summary>
+    public Upgrade[] UpgradeSlots { get; private set; }
+
+    #endregion IUpgradable
 
     /// <summary>
     /// Base amount of cargo produced during the day.
@@ -80,6 +95,9 @@ namespace ResourceWorld.Energy.Solar
 
     #region Member
 
+    /// <summary>
+    /// All ports of this object.
+    /// </summary>
     private readonly Port[] _ports;
 
     #endregion Member
@@ -103,6 +121,10 @@ namespace ResourceWorld.Energy.Solar
 
     #endregion Construction
 
+    /// <summary>
+    /// Produces cargo.
+    /// Sends cargo to output ports.
+    /// </summary>
     public void Update()
     {
       if (CurrentPowerState == PowerState.Off)
@@ -118,6 +140,32 @@ namespace ResourceWorld.Energy.Solar
             port.Send(p);
         }
       }
+    }
+
+    /// <summary>
+    /// Installs the given <paramref name="upgrade"/>
+    /// into a free upgrade slot.
+    /// </summary>
+    /// <param name="upgrade">Upgrade to install.</param>
+    public void InstallUpgrade(Upgrade upgrade)
+    {
+      if (this.TryGetFirstFreeUpgradeSlotID(out int slotID))
+        UpgradeSlots[slotID] = upgrade;
+      else
+        throw new InvalidOperationException("No free upgrade slot");
+    }
+
+    /// <summary>
+    /// Removes the given <paramref name="upgrade"/>
+    /// from the upgrade slots.
+    /// </summary>
+    /// <param name="upgrade">Upgrade to remove.</param>
+    public void RemoveUpgrade(Upgrade upgrade)
+    {
+      if (this.TryGetSlotIDOfUpgrade(upgrade, out int slotID))
+        UpgradeSlots[slotID] = null;
+      else
+        throw new ArgumentException("Given upgrade not installed");
     }
 
     private bool TryMakePacket(double cargo, out Packet packet)

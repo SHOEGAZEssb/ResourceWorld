@@ -1,10 +1,12 @@
-﻿namespace ResourceWorld.Energy.Solar
+﻿using ResourceWorld.Upgrades;
+
+namespace ResourceWorld.Energy.Solar
 {
   /// <summary>
   /// Interface for a cargo generating
   /// solar panel.
   /// </summary>
-  public interface ISolarPanel : ICargoContainer
+  public interface ISolarPanel : ICargoContainer, IUpgradeable
   {
     #region Properties
 

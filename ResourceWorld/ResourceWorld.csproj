@@ -65,6 +65,7 @@
     <Compile Include="Energy\Solar\ISolarPanel.cs" />
     <Compile Include="Energy\Solar\SolarPanel.cs" />
     <Compile Include="Energy\Storage\CargoTank.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="IResourceObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -80,6 +81,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Upgrades\IUpgradeable.cs" />
+    <Compile Include="Upgrades\Upgrade.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

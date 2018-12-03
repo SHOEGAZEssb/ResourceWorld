@@ -17,7 +17,7 @@ namespace ResourceWorld.Energy.Storage
       get => _cargo;
       private set
       {
-        if ((Cargo + value) > MaxCargo)
+        if ((Cargo + value) >= MaxCargo)
           _cargo = MaxCargo;
         else
           _cargo = value;
