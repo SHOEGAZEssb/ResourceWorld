@@ -6,19 +6,64 @@ namespace ResourceWorld.Connection
   /// <summary>
   /// A port for sending and receiving <see cref="Packet"/>s.
   /// </summary>
-  class EnergyPort : Port
+  public class EnergyPort : Port
   {
+    /// <summary>
+    /// Mode defining how incoming data
+    /// is handled when the <see cref="Port.ReceiveBuffer"/>
+    /// is full.
+    /// </summary>
+    public enum ReceiveMode
+    {
+      /// <summary>
+      /// Data in the buffer will be overwritten.
+      /// </summary>
+      Overwrite,
+
+      /// <summary>
+      /// The data will be denied.
+      /// </summary>
+      Deny
+    }
+
+    #region Properties
+
+    /// <summary>
+    /// The current receive mode.
+    /// </summary>
+    public ReceiveMode CurrentReceiveMode { get; set; }
+
+    #endregion Properties
+
+    #region Construction
+
+    /// <summary>
+    /// Constructor.
+    /// </summary>
+    public EnergyPort()
+    {
+      CurrentReceiveMode = ReceiveMode.Deny;
+    }
+
+    #endregion Construction
+
     /// <summary>
     /// Receives data that has been sent to the
     /// and puts it into the receive buffer.
     /// </summary>
     /// <param name="data">Data to receive.</param>
-    public override void Receive(ITransferable data)
+    /// <returns>True if the data was successfully received,
+    /// false if not.</returns>
+    public override bool Receive(ITransferable data)
     {
       if (data.GetType() != typeof(Packet))
         throw new ArgumentException("Given data is not valid on this port.");
 
+      if (ReceiveBuffer != null && CurrentReceiveMode == ReceiveMode.Deny)
+        return false;
+
       ReceiveBuffer = data;
+      return true;
     }
 
     /// <summary>
@@ -38,13 +83,14 @@ namespace ResourceWorld.Connection
     /// to the <see cref="SendBuffer"/>.
     /// </summary>
     /// <param name="data">Data to send.</param>
-    public override void Send(ITransferable data)
+    /// <returns>True if the data was successfully sent,
+    /// false if not.</returns>
+    public override bool Send(ITransferable data)
     {
       if(data.GetType() != typeof(Packet))
         throw new ArgumentException("Given data is not valid on this port.");
 
-      // todo: overwrite mode
-      ConnectedPort?.Receive(data);
+      return ConnectedPort?.Receive(data) ?? false;
     }
   }
 }

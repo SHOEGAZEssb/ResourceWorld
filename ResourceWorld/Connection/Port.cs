@@ -79,14 +79,18 @@ namespace ResourceWorld.Connection
     /// to the <see cref="SendBuffer"/>.
     /// </summary>
     /// <param name="data">Data to send.</param>
-    public abstract void Send(ITransferable data);
+    /// <returns>True if the data was successfully sent,
+    /// false if not.</returns>
+    public abstract bool Send(ITransferable data);
 
     /// <summary>
     /// Receives data and puts it into the
     /// <see cref="ReceiveBuffer"/>.
     /// </summary>
     /// <param name="data">Received data.</param>
-    public abstract void Receive(ITransferable data);
+    /// <returns>True if the data was successfully received,
+    /// false if not.</returns>
+    public abstract bool Receive(ITransferable data);
 
     /// <summary>
     /// Clears the <see cref="ReceiveBuffer"/>
