@@ -17,7 +17,7 @@ namespace ResourceWorldTest.Connection
     public void ReceiveTest()
     {
       // given: EnergyPort
-      var ep = new EnergyPort();
+      var ep = new EnergyPort() { CurrentIOMode = IOMode.Input };
       var packet = new Packet(1);
 
       // when: receiving data
@@ -37,7 +37,11 @@ namespace ResourceWorldTest.Connection
     public void ReceiveOverwriteTest()
     {
       // given: EnergyPort with data in the receive buffer
-      var ep = new EnergyPort { CurrentReceiveMode = EnergyPort.ReceiveMode.Overwrite };
+      var ep = new EnergyPort
+      {
+        CurrentIOMode = IOMode.Input,
+        CurrentReceiveMode = EnergyPort.ReceiveMode.Overwrite
+      };
       var packet1 = new Packet(1);
       ep.Receive(packet1);
       var packet2 = new Packet(2);
@@ -59,7 +63,11 @@ namespace ResourceWorldTest.Connection
     public void ReceiveDenyTest()
     {
       // given: EnergyPort with data in the receive buffer
-      var ep = new EnergyPort { CurrentReceiveMode = EnergyPort.ReceiveMode.Deny };
+      var ep = new EnergyPort
+      {
+        CurrentIOMode = IOMode.Input,
+        CurrentReceiveMode = EnergyPort.ReceiveMode.Deny
+      };
       var packet1 = new Packet(1);
       ep.Receive(packet1);
       var packet2 = new Packet(2);
@@ -81,7 +89,7 @@ namespace ResourceWorldTest.Connection
     public void CollectReceiveBuffer()
     {
       // given: EnergyPort with Packet
-      var ep = new EnergyPort();
+      var ep = new EnergyPort() { CurrentIOMode = IOMode.Input };
       var packet = new Packet(1);
       ep.Receive(packet);
 
@@ -102,8 +110,8 @@ namespace ResourceWorldTest.Connection
     public void SendTest()
     {
       // given: Connected EnergyPorts
-      var ep1 = new EnergyPort();
-      var ep2 = new EnergyPort();
+      var ep1 = new EnergyPort() { CurrentIOMode = IOMode.Output };
+      var ep2 = new EnergyPort() { CurrentIOMode = IOMode.Input };
       var packet = new Packet(1);
       ep1.ConnectToPort(ep2);
 

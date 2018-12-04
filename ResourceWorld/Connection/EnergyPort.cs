@@ -56,10 +56,8 @@ namespace ResourceWorld.Connection
     /// false if not.</returns>
     public override bool Receive(ITransferable data)
     {
-      if (data.GetType() != typeof(Packet))
-        throw new ArgumentException("Given data is not valid on this port.");
-
-      if (ReceiveBuffer != null && CurrentReceiveMode == ReceiveMode.Deny)
+      if (CurrentIOMode != IOMode.Input || data.GetType() != typeof(Packet)
+         || (ReceiveBuffer != null && CurrentReceiveMode == ReceiveMode.Deny))
         return false;
 
       ReceiveBuffer = data;
@@ -87,8 +85,8 @@ namespace ResourceWorld.Connection
     /// false if not.</returns>
     public override bool Send(ITransferable data)
     {
-      if(data.GetType() != typeof(Packet))
-        throw new ArgumentException("Given data is not valid on this port.");
+      if (CurrentIOMode != IOMode.Output || data.GetType() != typeof(Packet) || ConnectedPort?.CurrentIOMode != IOMode.Input)
+        return false;
 
       return ConnectedPort?.Receive(data) ?? false;
     }
