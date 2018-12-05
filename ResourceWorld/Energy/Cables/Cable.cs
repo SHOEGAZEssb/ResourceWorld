@@ -96,15 +96,18 @@ namespace ResourceWorld.Energy.Cables
       {
         if (port.CurrentIOMode == IOMode.Input)
         {
-          if(port.ReceiveBuffer != null)
-            CurrentPacket = (Packet)port.CollectReceivedData();
+          if (port.ReceiveBuffer != null)
+          {
+            if(CurrentPacket == null) // || update installed
+              CurrentPacket = (Packet)port.CollectReceivedData();
+          }
         }
         else if (port.CurrentIOMode == IOMode.Output)
         {
           if (CurrentPacket != null)
           {
-            port.Send(CurrentPacket);
-            CurrentPacket = null;
+            if(port.Send(CurrentPacket))
+              CurrentPacket = null;
           }
         }
       }
