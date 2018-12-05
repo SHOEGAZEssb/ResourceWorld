@@ -26,5 +26,16 @@ namespace ResourceWorld.Energy
 
       Cargo = cargo;
     }
+
+    /// <summary>
+    /// Combines this packet with the given
+    /// <paramref name="packetToCombineWith"/>.
+    /// </summary>
+    /// <param name="packetToCombineWith">Packet to combine this packet with.</param>
+    /// <returns>Combined packet.</returns>
+    public Packet Combine(Packet packetToCombineWith)
+    {
+      return new Packet(Cargo + packetToCombineWith?.Cargo ?? 0);
+    }
   }
 }

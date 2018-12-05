@@ -6,7 +6,7 @@ namespace ResourceWorld.Energy.Solar
   /// Interface for a cargo generating
   /// solar panel.
   /// </summary>
-  public interface ISolarPanel : ICargoContainer, IUpgradeable
+  public interface ISolarPanel : ICargoContainer
   {
     #region Properties
 

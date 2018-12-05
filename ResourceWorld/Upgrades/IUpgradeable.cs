@@ -7,22 +7,8 @@
   public interface IUpgradeable
   {
     /// <summary>
-    /// Available upgrade slots.
+    /// The container for upgrades of this object.
     /// </summary>
-    Upgrade[] UpgradeSlots { get; }
-
-    /// <summary>
-    /// Installs the given <paramref name="upgrade"/>
-    /// into a free upgrade slot.
-    /// </summary>
-    /// <param name="upgrade">Upgrade to install.</param>
-    void InstallUpgrade(Upgrade upgrade);
-
-    /// <summary>
-    /// Removes the given <paramref name="upgrade"/>
-    /// from the upgrade slots.
-    /// </summary>
-    /// <param name="upgrade">Upgrade to remove.</param>
-    void RemoveUpgrade(Upgrade upgrade);
+    UpgradeContainer UpgradeContainer { get; }
   }
 }

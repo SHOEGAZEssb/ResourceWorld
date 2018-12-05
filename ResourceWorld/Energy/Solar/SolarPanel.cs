@@ -47,25 +47,16 @@ namespace ResourceWorld.Energy.Solar
 
     #endregion ICargoContainer
 
-    #region IUpgradeable
-
-    /// <summary>
-    /// Available upgrade slots.
-    /// </summary>
-    public Upgrade[] UpgradeSlots { get; private set; }
-
-    #endregion IUpgradable
-
     /// <summary>
     /// Base amount of cargo produced during the day.
     /// </summary>
-    public const double CargoPerTickBase = 0.003;
+    public const double CARGOPERTICKBASE = 0.003;
 
     /// <summary>
     /// Amount of cargo that is charged
     /// per update tick.
     /// </summary>
-    public double CargoPerTick => CargoPerTickBase;
+    public double CargoPerTick => CARGOPERTICKBASE;
 
     #region IConnectable
 
@@ -140,32 +131,6 @@ namespace ResourceWorld.Energy.Solar
             port.Send(p);
         }
       }
-    }
-
-    /// <summary>
-    /// Installs the given <paramref name="upgrade"/>
-    /// into a free upgrade slot.
-    /// </summary>
-    /// <param name="upgrade">Upgrade to install.</param>
-    public void InstallUpgrade(Upgrade upgrade)
-    {
-      if (this.TryGetFirstFreeUpgradeSlotID(out int slotID))
-        UpgradeSlots[slotID] = upgrade;
-      else
-        throw new InvalidOperationException("No free upgrade slot");
-    }
-
-    /// <summary>
-    /// Removes the given <paramref name="upgrade"/>
-    /// from the upgrade slots.
-    /// </summary>
-    /// <param name="upgrade">Upgrade to remove.</param>
-    public void RemoveUpgrade(Upgrade upgrade)
-    {
-      if (this.TryGetSlotIDOfUpgrade(upgrade, out int slotID))
-        UpgradeSlots[slotID] = null;
-      else
-        throw new ArgumentException("Given upgrade not installed");
     }
 
     private bool TryMakePacket(double cargo, out Packet packet)

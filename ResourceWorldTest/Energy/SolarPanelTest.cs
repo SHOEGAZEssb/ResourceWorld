@@ -27,7 +27,7 @@ namespace ResourceWorldTest.Energy
       }
 
       // then: cargo produced
-      Assert.That(sp.Cargo, Is.EqualTo(ticks * SolarPanel.CargoPerTickBase).Within(TestHelper.DOUBLECOMPARISONTOLERANCE));
+      Assert.That(sp.Cargo, Is.EqualTo(ticks * SolarPanel.CARGOPERTICKBASE).Within(TestHelper.DOUBLECOMPARISONTOLERANCE));
     }
   }
 }
