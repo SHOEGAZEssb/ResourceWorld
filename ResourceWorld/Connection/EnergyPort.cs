@@ -1,5 +1,4 @@
 ﻿using ResourceWorld.Energy;
-using System;
 
 namespace ResourceWorld.Connection
 {
@@ -49,7 +48,7 @@ namespace ResourceWorld.Connection
 
     /// <summary>
     /// Receives data that has been sent to the
-    /// and puts it into the receive buffer.
+    /// and puts it into the <see cref="Port.ReceiveBuffer"/>.
     /// </summary>
     /// <param name="data">Data to receive.</param>
     /// <returns>True if the data was successfully received,
@@ -65,7 +64,7 @@ namespace ResourceWorld.Connection
     }
 
     /// <summary>
-    /// Clears the <see cref="ReceiveBuffer"/>
+    /// Clears the <see cref="Port.ReceiveBuffer"/>
     /// and returns the data.
     /// </summary>
     /// <returns>Data from the buffer.</returns>
@@ -78,7 +77,8 @@ namespace ResourceWorld.Connection
 
     /// <summary>
     /// Sends the given <paramref name="data"/>
-    /// to the <see cref="SendBuffer"/>.
+    /// to the <see cref="Port.ReceiveBuffer"/>
+    /// of the <see cref="Port.ConnectedPort"/>.
     /// </summary>
     /// <param name="data">Data to send.</param>
     /// <returns>True if the data was successfully sent,

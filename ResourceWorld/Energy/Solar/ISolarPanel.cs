@@ -1,6 +1,4 @@
-﻿using ResourceWorld.Upgrades;
-
-namespace ResourceWorld.Energy.Solar
+﻿namespace ResourceWorld.Energy.Solar
 {
   /// <summary>
   /// Interface for a cargo generating

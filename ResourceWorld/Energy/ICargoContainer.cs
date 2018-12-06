@@ -1,5 +1,4 @@
 ﻿using ResourceWorld.Connection;
-using ResourceWorld.Upgrades;
 
 namespace ResourceWorld.Energy
 {

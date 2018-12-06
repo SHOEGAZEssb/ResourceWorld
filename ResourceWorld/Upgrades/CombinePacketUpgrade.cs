@@ -6,7 +6,7 @@ namespace ResourceWorld.Upgrades
 {
   /// <summary>
   /// Upgrade that allows the object it is installed in
-  /// to combine an incoming <see cref="Packet"/> with
+  /// to combine an incoming <see cref="Energy.Packet"/> with
   /// the saved one.
   /// </summary>
   class CombinePacketUpgrade : IUpgrade

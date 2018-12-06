@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace ResourceWorld.Upgrades
 {
+  /// <summary>
+  /// A container that holds installed upgrades.
+  /// </summary>
   public class UpgradeContainer
   {
     #region Properties
@@ -86,10 +89,8 @@ namespace ResourceWorld.Upgrades
     }
 
     /// <summary>
-    /// Tries to get the slot ID of the first free
-    /// upgrade slot of the <paramref name="obj"/>.
+    /// Tries to get the slot ID of the first free <see cref="UpgradeSlots"/>.
     /// </summary>
-    /// <param name="obj">Calling object.</param>
     /// <param name="slotID">Slot ID of the first free upgrade slot.</param>
     /// <returns>True if a free slot was found, false if not.</returns>
     private bool TryGetFirstFreeUpgradeSlotID(out int slotID)
@@ -109,9 +110,8 @@ namespace ResourceWorld.Upgrades
 
     /// <summary>
     /// Tries to get the slot ID of the given <paramref name="upgrade"/>
-    /// in the upgrade slots of the given <paramref name="obj"/>.
+    /// in the <see cref="UpgradeSlots"/>.
     /// </summary>
-    /// <param name="obj">Calling object.</param>
     /// <param name="upgrade">Upgrade to get slot ID for.</param>
     /// <param name="slotID">Slot ID of the given <paramref name="upgrade"/>.</param>
     /// <returns>True if the upgrade was found, false if not.</returns>

@@ -32,6 +32,9 @@
     /// </summary>
     string ObjectName { get; }
 
+    /// <summary>
+    /// Current power state of this object.
+    /// </summary>
     PowerState CurrentPowerState { get; }
   }
 }

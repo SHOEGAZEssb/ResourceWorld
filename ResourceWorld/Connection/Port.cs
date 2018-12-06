@@ -23,6 +23,11 @@ namespace ResourceWorld.Connection
     Closed
   }
 
+  /// <summary>
+  /// Handles how new data should be treated
+  /// when the <see cref="Port.ReceiveBuffer"/>
+  /// is full.
+  /// </summary>
   public enum OverwriteMode
   {
     /// <summary>
@@ -76,7 +81,8 @@ namespace ResourceWorld.Connection
 
     /// <summary>
     /// Sends the given <paramref name="data"/>
-    /// to the <see cref="SendBuffer"/>.
+    /// to the <see cref="Port.ReceiveBuffer"/>
+    /// of the <see cref="Port.ConnectedPort"/>.
     /// </summary>
     /// <param name="data">Data to send.</param>
     /// <returns>True if the data was successfully sent,

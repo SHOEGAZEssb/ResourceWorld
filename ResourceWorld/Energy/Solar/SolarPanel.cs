@@ -1,9 +1,10 @@
 ﻿using ResourceWorld.Connection;
-using ResourceWorld.Upgrades;
-using System;
 
 namespace ResourceWorld.Energy.Solar
 {
+  /// <summary>
+  /// Object generating cargo from solar power.
+  /// </summary>
   public class SolarPanel : ISolarPanel
   {
     #region Properties

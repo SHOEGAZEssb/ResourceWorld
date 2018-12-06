@@ -1,6 +1,5 @@
 ﻿using ResourceWorld.Connection;
 using ResourceWorld.Upgrades;
-using System.Linq;
 
 namespace ResourceWorld.Energy.Cables
 {
